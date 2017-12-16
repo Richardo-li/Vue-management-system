@@ -9,21 +9,22 @@
             <el-form class="login_content_form"  :model="user" :rules='loginRules' status-icon ref="LoginForm" label-width="70px" label-position="left" >
 
                 <!-- 用户名: 表单效验与重置, 需要设置prop属性为表单字段 -->
-                <el-form-item  label="用户名:" prop="uname">
+                <el-form-item id='myid'  label="用户名:" prop="uname">
+                   
                     <!-- 用户名输入框: 这里的v-model记得关联表单字段 -->
                     <el-input type="text" v-model="user.uname" auto-complete="off"></el-input>
                 </el-form-item>
 
                 <!-- 密码: 表单效验与重置, 需要设置prop属性为表单字段 -->
-                <el-form-item label="密码:" prop="upwd">
+                <el-form-item label="密码:" prop="upwd" >
                     <!-- 密码输入框: 这里的v-model记得关联表单字段 -->
                     <el-input type="password" v-model="user.upwd" auto-complete="off"></el-input>
                 </el-form-item>
 
                 <!-- 按钮 -->
                 <el-form-item>
-                    <el-button type="primary" @click="login('LoginForm')">提交</el-button>
-                     <el-button @click="resetForm('LoginForm')">重置</el-button>
+                    <el-button type="primary" plain @click="login('LoginForm')">提交</el-button>
+                     <el-button type="info" plain @click="resetForm('LoginForm')">重置</el-button>
                 </el-form-item>
             </el-form>
 
@@ -35,10 +36,11 @@
        data(){
            return {
                user:{
-                   uname:'',
-                   upwd:''
+                   uname:'admin',
+                   upwd:'123456'
                },
                loginRules:{
+                   //对应 prop 属性
                   uname:[
                       {required:true,message:'请输入用户名',trigger:'blur'},
                       {pattern:/\w{4,8}/,message:'长度在4-8个字符，且只能为字母或数字',trigger:'blur'}
@@ -60,25 +62,35 @@
                      this.$http.post(this.$api.login,this.user)
                                .then(rsp => {
                                    if(rsp.data.message.realname){
-                                        alert(rsp.data.message.realname);
+                                        // alert(rsp.data.message.realname);
+                                        //  this.$message(rsp.data.message.realname);
+                                        this.$message({
+                                                message: rsp.data.message.realname+'，欢迎登录！',
+                                                type: 'success'
+                                              });
+                                        this.$router.push('/');//跳转页面
                                    }else{
-                                       alert('用户名或密码错误！');
+                                    //    alert('用户名或密码错误！');
+                                        this.$message.error('用户名或密码错误！');
+              
+
                                    }
                                })
-                              .then(rsp => this.$router.push('/'));
+                           
                     }else {
                         return false;
                     }
                 });
       
 
-
-
             },
             // 重置表单
             resetForm(formName) {
                 //$refs[]  可以获取DOM对象
                 this.$refs[formName].resetFields();
+                this.user.uname='';
+                this.user.upwd='';
+            
             }
 
        },
@@ -101,6 +113,11 @@
 </script>
 
 <style scoped lang='less'>
+
+   #myid::before{
+       background: red;
+       color:red;
+   }
 
       .login_main{
           width: 400px;
@@ -125,9 +142,8 @@
             .el-button{
                 margin-left: 45px;
             }
-            .el-form-item__label{ 
-                color:white;   
-            }
+     
+
          }
         
       }
