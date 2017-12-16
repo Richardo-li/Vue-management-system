@@ -1,6 +1,5 @@
 <template>
     <main>
-        I'm Component,who are you?
         
         <router-view></router-view>  <!-- 路由占位 -->
 
@@ -15,7 +14,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang='less'>
 
 
 
