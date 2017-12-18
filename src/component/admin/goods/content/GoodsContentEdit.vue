@@ -1,15 +1,21 @@
 <template>
     <div>
-        首页
+        
+      商品修改
+
+
+
     </div>
 </template>
 
 <script>
     export default {
-        
+
     }
 </script>
 
-<style scoped>
+<style scoped lang='less'>
+
+
 
 </style>

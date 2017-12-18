@@ -1,9 +1,8 @@
 <template>
-    <main>
-        
-        <router-view></router-view>  <!-- 路由占位 -->
-
-    </main>
+    <div>
+           商品添加
+         
+    </div>
 </template>
 
 <script>

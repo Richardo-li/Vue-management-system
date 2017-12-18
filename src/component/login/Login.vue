@@ -61,19 +61,24 @@
                     if (result) {
                      this.$http.post(this.$api.login,this.user)
                                .then(rsp => {
+                                   console.log(rsp);
+                                   
                                    if(rsp.data.message.realname){
                                         // alert(rsp.data.message.realname);
                                         //  this.$message(rsp.data.message.realname);
+                                      
+                                      //保存到本地存储    只能保存字符串
+                                        localStorage.setItem('user',JSON.stringify(rsp.data.message));
+
+
                                         this.$message({
                                                 message: rsp.data.message.realname+'，欢迎登录！',
                                                 type: 'success'
                                               });
-                                        this.$router.push('/');//跳转页面
+                                        this.$router.push('/admin');//跳转页面
                                    }else{
                                     //    alert('用户名或密码错误！');
                                         this.$message.error('用户名或密码错误！');
-              
-
                                    }
                                })
                            

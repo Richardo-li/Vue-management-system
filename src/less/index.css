@@ -4,4 +4,25 @@ main {
   height: 100%;
   background: #2c72ab;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
+.router-link-active {
+  text-decoration: none;
+  color: #fff;
+}
+.el-submenu [class^=el-icon-] {
+  color: white;
+}
+.el-table thead tr {
+  color: white;
+  background-color: #d4c5c5;
+}
+[class^=el-icon-] {
+  color: rgba(0, 0, 0, 0.3);
+}
+[class^=el-icon-].active {
+  color: #000;
+}
 /*# sourceMappingURL=./index.css.map */
