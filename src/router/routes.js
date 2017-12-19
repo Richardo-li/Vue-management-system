@@ -9,16 +9,19 @@ import GoodsContentList from "../component/admin/goods/content/GoodsContentList.
 
 // 设置路由
 
+
+
 // 设置用户页子路由
 let AdminChildren = [
     { name: 'gca', path: 'goods/content/add', component: GoodsContentAdd },
-    { name: 'gce', path: 'goods/content/edit', component: GoodsContentEdit },
+    { name: 'gce', path: 'goods/content/edit/:id', component: GoodsContentEdit },
     { name: 'gcl', path: 'goods/content/list', component: GoodsContentList }
 ];
 
+
 export default {
     routes: [
-        { name: 'l', path: '/', component: LoginComponent },
+        { name: 'l', path: '/login', component: LoginComponent },
         { name: 'A', path: '/admin', component: AdminComponent, children: AdminChildren },
         { name: 'r', path: '/register', component: RegisterComponent }
     ]

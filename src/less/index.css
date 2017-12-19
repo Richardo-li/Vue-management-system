@@ -25,4 +25,9 @@ a {
 [class^=el-icon-].active {
   color: #000;
 }
+.ql-editor {
+  min-height: 250px;
+  height: 250px;
+  max-height: 250px;
+}
 /*# sourceMappingURL=./index.css.map */

@@ -54,7 +54,8 @@
               </el-table-column>
               <el-table-column width="100" label="操作">
                   <template slot-scope="scope">
-                      <a href="">修改</a>
+                       <!-- 传id -->
+                       <router-link class='edit' :to="{name: 'gce', params: {id: scope.row.id}}">修改</router-link>
                   </template>
               </el-table-column>
 
@@ -100,13 +101,13 @@ export default {
             },
             // 每页数量变化时触发    获取到 :page-sizes 中选中的值
             handleSizeChange(pageSize){
-              console.log(pageSize);
+            //   console.log(pageSize);
               
               this.query.pageSize = pageSize;
               this.getList();
             },
             handleCurrentChange(pageIndex){
-                 console.log(pageIndex);
+                //  console.log(pageIndex);
                  this.query.pageIndex=pageIndex;
                  this.getList();
             }
@@ -138,5 +139,9 @@ export default {
            margin-top: 15px;
            padding:5px;
            background: white;
+       }
+
+       .edit{
+           color:blue;
        }
 </style>

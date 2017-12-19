@@ -5,11 +5,13 @@
             <img class="mylogo" src="../../img/logo.png" alt="">
             <!-- 使用了子组件 -->
             <asidecom></asidecom>
+
         </el-aside>
         <el-container>
             <el-header>
                   <!-- 使用了子组件 -->
                  <headercom></headercom>
+                 
             </el-header>
 
             <!-- 这一块是动态变化的, 将来通过子路由控制 -->

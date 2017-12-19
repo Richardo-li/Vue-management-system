@@ -1,0 +1,42 @@
+
+每个文件的用处!  
+ 
+      dist文件夹：
+
+      node_modules文件夹:
+
+      src文件夹：
+              
+              component文件夹:
+
+              filter文件夹：
+
+              img文件夹：
+
+              js文件夹：
+
+              less文件夹：
+ 
+              guard.js: 路由守卫函数
+
+              router.js文件： 存放路由
+
+              index.html:
+
+              main.js:    主要的js，里面存放着new Vue() 实例
+
+
+
+      .babelrc:
+
+      .gitignore:
+
+      package-lock.json:
+
+      package.json:
+
+      webpack.config.js:
+
+
+
+
