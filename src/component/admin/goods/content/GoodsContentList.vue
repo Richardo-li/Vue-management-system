@@ -15,9 +15,9 @@
         <el-row type="flex" class="row-bg box" justify="space-between">
          <el-col :span="6">
              <div class="grid-content bg-purple">
-                     <el-button size="small" icon="el-icon-plus">新增</el-button>
+                   <router-link to='/admin/goods/content/add'><el-button size="small"  icon="el-icon-plus">新增</el-button></router-link>  
                      <el-button size="small" icon="el-icon-check ">全选</el-button>
-                     <el-button size="small" icon="el-icon-delete">删除</el-button>
+                     <el-button size="small" icon="el-icon-delete" @click='delData'>删除</el-button>
              </div>
          </el-col>
          <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
@@ -31,9 +31,9 @@
 
         
        <!-- 表格: data属性为列表数据, 传入后会根据这个数据自动渲染 -->
-       <el-table ref="multipleTable" :data="tableList" height="360" tooltip-effect="dark" style="width: 100%">
+       <el-table ref="multipleTable"  @selection-change='selectionChange' :data="tableList" height="360" tooltip-effect="dark" style="width: 100%">
            <!-- 多选框列 -->
-           <el-table-column type="selection"></el-table-column>
+           <el-table-column type="selection" ></el-table-column>
 
            <!-- 普通列: label用于设置表头, prop用于指定该列展示的字段名称 -->
            <el-table-column label="商品名称" prop="title"></el-table-column>
@@ -87,10 +87,31 @@ export default {
                    pageSize: 10,
                    searchvalue: ''
                },
-               totalcount: 0
+               totalcount: 0,
+               delArr:[]
            }
        },
        methods:{
+            //删除数据，可批量删除
+            delData(){
+                  
+             var  ids=this.delArr.join(','); //只传字符串，并且用逗号隔开
+             if(ids==0){   //如果没传则不操作
+                  return false;
+             }
+                 
+              this.$http.get(this.$api.gsDel+ids)
+                     .then(rsp=>{
+
+                       this.$notify({
+                             title: '成功',
+                             message: rsp.data.message,
+                             type: 'success'
+                           });
+                           window.location.reload();
+                     })
+
+            },
             getList(){
                  this.$http.get(this.$api.gsList, { params: this.query })
                        .then(rsp => {
@@ -110,11 +131,32 @@ export default {
                 //  console.log(pageIndex);
                  this.query.pageIndex=pageIndex;
                  this.getList();
+            },
+            selectionChange(val){
+                //  console.log(val);
+
+                let ids=[];  //用来保存最新的
+
+
+                for(var i in val) {  //遍历对象
+                // console.log(val[i].id);      
+
+                     ids.push(val[i].id);
+                }   
+
+                this.delArr=ids;
+
+                console.log(this.delArr);
+               
+
+                 
             }
 
        },
        created(){
               this.getList();
+
+
 
        }
 

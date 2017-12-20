@@ -188,19 +188,19 @@ import {quillEditor} from "vue-quill-editor";
         uploadImgUrl:this.$http.defaults.baseURL+ this.$api.atImg,
         uploadFileUrl:this.$http.defaults.baseURL+ this.$api.atFile,
         ruleForm: {
-             title: '测试',   //标题
-             sub_title:'测试', //副标题
-             goods_no:'66666', //商品货号
+             title: ' ',   //标题
+             sub_title:' ', //副标题
+             goods_no:'', //商品货号
              category_id: '', //类别id
-             stock_quantity:666, //库存数量
-             market_price:666, //市场价格
-             sell_price:666, //销售价格                    
-             status: true,  // 状态 0:发布 1:不发布
+             stock_quantity:0, //库存数量
+             market_price:0, //市场价格
+             sell_price:0, //销售价格                    
+             status: false,  // 状态 0:发布 1:不发布
              is_slide: false, //true:在轮播图显示
-             is_top: true,  // true：置顶
+             is_top: false,  // true：置顶
              is_hot: false,  // true：推荐
-             zhaiyao: '为不凡而生',    // 文章摘要
-             content:'为不凡而生' ,   // 文章富文本内容
+             zhaiyao: ' ',    // 文章摘要
+             content:' ' ,   // 文章富文本内容
              imgList:[],//图片列表
              fileList:[], //附件列表     
         },
